@@ -13,20 +13,20 @@
             <input type="hidden" asp-for="Testimonial.Id" />
             <div class="col-md-6">
                 <label class="form-label">Name</label>
-                <input asp-for="Testimonial.Name" class="form-control" />
+                <input asp-for="Testimonial.Name" readonly class="form-control" />
                 <input asp-for="Testimonial.Id" hidden />
             </div>
             <div class="col-md-6">
-                <label class="form-label">Review</label>
-                <input asp-for="Testimonial.Review" class="form-control" />
-            </div>
-            <div class="col-md-6">
                 <label class="form-label">Designation</label>
-                <input asp-for="Testimonial.Designation" class="form-control" />
+                <input asp-for="Testimonial.Designation" readonly class="form-control" />
             </div>
             <div class="col-md-6">
                 <label class="form-label">Image Name</label>
                 <input asp-for="Testimonial.Image" readonly class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Review</label>
+                <textarea asp-for="Testimonial.Review" readonly class="form-control"></textarea>
             </div>
             <div class="col-md-12 mt-3">
                 <a asp-page="./ShowTestimonial" class="btn btn-outline-secondary">Back to List</a> |

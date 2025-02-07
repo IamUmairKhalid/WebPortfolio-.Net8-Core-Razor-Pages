@@ -40,16 +40,16 @@
 @foreach (var item in Model.Testimonial) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @item.Name
+            </td>
+            <td >
+               <span class="short-text">@(item.Review.Length > 30 ? item.Review.Substring(0, 30) + "..." : item.Review)</span>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Review)
+               @item.Designation
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Designation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                @item.Image
             </td>
             <td >
                 <a class="btn btn-success" asp-page="./UpdateTestimonial" asp-route-id="@item.Id" >
