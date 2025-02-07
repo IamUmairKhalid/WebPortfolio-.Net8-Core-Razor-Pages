@@ -1,0 +1,66 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.ShowSocialModel
+
+@{
+    ViewData["Title"] = "ShowSocial";
+}
+<div class="row justify-content-center">
+    <div class="col-md-10 justify-content-center">
+        <h2>ShowSocial</h2>
+
+        <p>
+            <a asp-page="AddSocial">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Social[0].Fb)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Social[0].Twitter)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Social[0].Instagram)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Social[0].Linkedin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Social[0].Skype)
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Social)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fb)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Twitter)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Instagram)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Linkedin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Skype)
+                        </td>
+                        <td>
+                            <a asp-page="./UpdateSocial" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-page="./DetailSocial" asp-route-id="@item.Id">Details</a> |
+                            <a asp-page="./DeleteSocial" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

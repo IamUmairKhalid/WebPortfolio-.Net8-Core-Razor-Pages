@@ -1,0 +1,57 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.ShowServicesModel
+
+@{
+    ViewData["Title"] = "ShowServices";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-10 justify-content-center">
+        <h2>List of Services</h2>
+
+        <p>
+            <a asp-page="AddServices">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Desc)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services[0].Icon)
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Services)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Desc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Icon)
+                        </td>
+                        <td>
+                            <a asp-page="./UpdateServices" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-page="./DetailServices" asp-route-id="@item.Id">Details</a> |
+                            <a asp-page="./DeleteServices" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

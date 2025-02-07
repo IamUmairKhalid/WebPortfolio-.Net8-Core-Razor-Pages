@@ -1,0 +1,33 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.AddCounterModel
+@{
+}
+<div class="row justify-content-center">
+
+    <div class="col-md-10 justify-content-center">
+        <h2>
+            Add Counter Details
+        </h2>
+        <form class="row g-3" method="post">
+            <div class="col-md-4">
+                <label class="form-label">Title</label>
+                <input asp-for="count.Title" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Number</label>
+                <input asp-for="count.Number" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Icon</label>
+                <input asp-for="count.Icon" class="form-control">
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary mt-3">AddCounter</button>
+                
+                <a asp-page="ShowCounter" class="btn btn-outline-secondary mt-3">Back to List</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>

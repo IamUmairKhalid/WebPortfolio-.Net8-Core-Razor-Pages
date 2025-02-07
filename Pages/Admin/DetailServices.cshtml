@@ -1,0 +1,37 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.DetailServicesModel
+
+@{
+    ViewData["Title"] = "DetailServices";
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-md-8 justify-content-center">
+        <h2>DetailServices</h2>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Services.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Services.Title)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Services.Desc)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Services.Desc)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Services.Icon)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Services.Icon)
+            </dd>
+        </dl>
+
+        <a asp-page="./UpdateServices" asp-route-id="@Model.Services.Id">Edit</a> |
+        <a asp-page="./ShowServices">Back to List</a>
+    </div>
+</div>

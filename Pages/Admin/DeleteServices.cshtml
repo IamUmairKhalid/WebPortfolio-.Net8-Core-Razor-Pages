@@ -1,0 +1,43 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.DeleteServicesModel
+
+@{
+    ViewData["Title"] = "DeleteServices";
+}
+
+
+
+<div class="row justify-content-center">
+    <div class="col-md=8 justify-content-center">
+        <h2>DeleteServices</h2>
+        <h3>Are you sure you want to delete this?</h3>
+        <hr />
+        <dl class="row justify-content-center">
+            <dt class="col-sm-2 ">
+                @Html.DisplayNameFor(model => model.Services.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Services.Title)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Services.Desc)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Services.Desc)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Services.Icon)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Services.Icon)
+            </dd>
+        </dl>
+
+        <form method="post">
+            <input type="hidden" asp-for="Services.Id" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-page="./ShowServices">Back to List</a>
+        </form>
+    </div>
+</div>
+

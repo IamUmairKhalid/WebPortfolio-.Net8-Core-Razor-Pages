@@ -1,0 +1,68 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.ProfileModel
+@{
+}
+<div class="row justify-content-center">
+
+    <div class="col-md-6 justify-content-center">
+        <h2>Profile</h2>
+        <form class="row g-3" method="post" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <input asp-for="Pro.Name" class="form-control" />
+                <input asp-for="Pro.Id" hidden />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input asp-for="Pro.Email" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Phone</label>
+                <input asp-for="Pro.Phone" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Degree</label>
+                <input asp-for="Pro.Degree" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Birthday</label>
+                <input asp-for="Pro.Birthday" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Age</label>
+                <input asp-for="Pro.Age" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">FreelanceStatus</label>
+                <input asp-for="Pro.FreelanceStatus" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Image Name</label>
+                <input asp-for="Pro.Image" readonly class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Photo</label>
+                <input asp-for="Pro.Photo" class="form-control" />
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">Address</label>
+                <input asp-for="Pro.Address" class="form-control" />
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">DescriptionOne</label>
+                <input asp-for="Pro.DesOne" class="form-control" />
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">DescriptionTwo</label>
+                <input asp-for="Pro.DesTwo" class="form-control" />
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-primary mt-3">SAVE</button>
+            </div>
+
+        </form>
+    </div>
+    <div class="col-md-4 justify-content-center ">
+        <img src="~/images/@Model.Pro.Image" style="border-radius: 150px; float-left: 65px; margin-left: 65px;" hight="350px" width="300" class="mt-5 " />
+    </div>
+</div>

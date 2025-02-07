@@ -1,0 +1,41 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.UpdateServicesModel
+
+@{
+    ViewData["Title"] = "UpdateServices";
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-md-8 justify-content-center">
+        <h2>UpdateServices</h2>
+        <hr />
+        <form method="post">
+           
+            <input type="hidden" asp-for="Services.Id" />
+            <div class="form-group">
+                <label asp-for="Services.Title" class="control-label"></label>
+                <input asp-for="Services.Title" class="form-control" />
+                <span asp-validation-for="Services.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Services.Desc" class="control-label"></label>
+                <input asp-for="Services.Desc" class="form-control" />
+                <span asp-validation-for="Services.Desc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Services.Icon" class="control-label"></label>
+                <input asp-for="Services.Icon" class="form-control" />
+                <span asp-validation-for="Services.Icon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="SaveChanges" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./ShowServices">Back to List</a>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.ShowSkillModel
+
+@{
+    ViewData["Title"] = "ShowSkill";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 justify-content-center">
+        <h2>ShowSkill</h2>
+        <p>
+            <a asp-page="AddSkills">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Skill[0].Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Skill[0].Number)
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Skill)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Number)
+                        </td>
+                        <td>
+                            <a asp-page="./UpdateSkill" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-page="./DetailSkill" asp-route-id="@item.Id">Details</a> |
+                            <a asp-page="./DeleteSkill" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

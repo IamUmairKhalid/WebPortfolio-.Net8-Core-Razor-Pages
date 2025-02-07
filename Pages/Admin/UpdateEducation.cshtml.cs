@@ -1,0 +1,31 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using ResumeWebApp.Data;
+using ResumeWebApp.Models;
+
+namespace ResumeWebApp.Pages.Admin
+{
+    public class UpdateEducationModel : PageModel
+    {
+        AppDbContext db;
+
+        [BindProperty]
+        public Education edu { get; set; }
+        public UpdateEducationModel(AppDbContext _db)
+        {
+            db = _db;
+        }
+        public void OnGet(int Id)
+        {
+            edu = db.tbl_Education.Find(Id);
+        }
+
+        public IActionResult OnPost()
+        {
+            db.tbl_Education.Update(edu);
+            db.SaveChanges();
+
+            return RedirectToPage("ShowEducation");
+        }
+    }
+}

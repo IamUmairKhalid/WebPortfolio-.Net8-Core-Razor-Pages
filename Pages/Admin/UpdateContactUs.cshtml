@@ -1,0 +1,36 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.UpdateContactUsModel
+@{
+}
+<div class="row justify-content-center">
+
+    <div class="col-md-10 justify-content-center">
+        <h2>
+            Update ContactUs Details
+        </h2>
+        <form class="row g-3" method="post">
+            <div class="col-md-4">
+                <label class="form-label">Name</label>
+                <input asp-for="contact.Name" class="form-control">
+                <input hidden asp-for="contact.Id" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Email</label>
+                <input asp-for="contact.Email" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Subject</label>
+                <input asp-for="contact.Subject" class="form-control">
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">Message</label>
+                <textarea asp-for="contact.Message" class="form-control"></textarea>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-primary mt-3">AddContactUs</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>

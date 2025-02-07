@@ -1,0 +1,31 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.DetailSkillModel
+
+@{
+    ViewData["Title"] = "DetailSkill";
+}
+<div class="row justify-content-center">
+    <div class="col-md-8 justify-content-center">
+        <h2>DetailSkill</h2>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Skill.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Skill.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Skill.Number)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Skill.Number)
+            </dd>
+        </dl>
+        <a asp-page="./UpdateSkill" asp-route-id="@Model.Skill.Id">Edit</a> |
+        <a asp-page="./ShowSkill">Back to List</a>
+    </div>
+</div>
+
+
+

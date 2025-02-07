@@ -1,0 +1,40 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.AddServicesModel
+
+@{
+    ViewData["Title"] = "AddServices";
+}
+
+
+
+<div class="row justify-content-center">
+    <div class="col-md-8 justify-content-center">
+        <h2>AddServices</h2>
+        <hr />
+        <form method="post">
+            
+            <div class="form-group">
+                <label asp-for="Services.Title" class="control-label"></label>
+                <input asp-for="Services.Title" class="form-control" />
+                <span asp-validation-for="Services.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Services.Desc" class="control-label"></label>
+                <input asp-for="Services.Desc" class="form-control" />
+                <span asp-validation-for="Services.Desc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Services.Icon" class="control-label"></label>
+                <input asp-for="Services.Icon" class="form-control" />
+                <span asp-validation-for="Services.Icon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="ShowServices">Back to List</a>
+</div>
