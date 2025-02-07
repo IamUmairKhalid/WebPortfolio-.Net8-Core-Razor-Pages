@@ -1,0 +1,44 @@
+﻿@page
+@model ResumeWebApp.Pages.Admin.ContactUsDetailsModel
+
+@{
+    ViewData["Title"] = "ContactUsDetails";
+}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6 justify-content-center">
+        <h2>Contact Detail</h2>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ContactUs.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContactUs.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ContactUs.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContactUs.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ContactUs.Subject)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContactUs.Subject)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ContactUs.Message)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContactUs.Message)
+        </dd>
+    </dl>
+        <div>
+            <a asp-page="./ShowContactUs" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+</div>
+</div>
+
