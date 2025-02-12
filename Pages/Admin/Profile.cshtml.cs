@@ -24,6 +24,7 @@ namespace ResumeWebApp.Pages.Admin
         public void OnGet()
         {
             Pro = db.tbl_Profile.FirstOrDefault();
+            ViewData["pic"] = Pro.Image;
         }
 
         public void OnPost()
