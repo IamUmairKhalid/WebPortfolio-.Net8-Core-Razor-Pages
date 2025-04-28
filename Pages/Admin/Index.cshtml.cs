@@ -5,8 +5,15 @@ namespace ResumeWebApp.Pages.Admin
 {
     public class IndexModel : PageModel
     {
+        public IndexModel()
+        {
+        }
         public void OnGet()
         {
+            if(HttpContext.Session.GetString("flag") != "true")
+            {
+                HttpContext.Response.Redirect("/Admin/LogIn");
+            }
         }
     }
 }

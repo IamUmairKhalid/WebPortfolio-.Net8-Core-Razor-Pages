@@ -19,6 +19,6 @@ namespace ResumeWebApp.Data
         public DbSet<Skill> tbl_Skill { get; set; }
         public DbSet<Social> tbl_Social { get; set; }
         public DbSet<Testimonial> tbl_Testimonial { get; set; }
-
+        public DbSet<User> tbl_User { get; set; }
     }
 }

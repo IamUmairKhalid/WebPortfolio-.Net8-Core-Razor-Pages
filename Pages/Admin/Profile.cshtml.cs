@@ -23,6 +23,10 @@ namespace ResumeWebApp.Pages.Admin
 
         public void OnGet()
         {
+            if (HttpContext.Session.GetString("flag") != "true")
+            {
+                HttpContext.Response.Redirect("/Admin/LogIn");
+            }
             Pro = db.tbl_Profile.FirstOrDefault();
             ViewData["pic"] = Pro.Image;
         }
