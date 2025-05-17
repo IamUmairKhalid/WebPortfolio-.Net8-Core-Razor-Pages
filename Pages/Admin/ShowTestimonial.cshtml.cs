@@ -23,6 +23,11 @@ namespace ResumeWebApp.Pages.Admin
 
         public async Task OnGetAsync()
         {
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            if (HttpContext.Session.GetString("flag") != "true")
+            {
+                HttpContext.Response.Redirect("/Admin/LogIn");
+            }
             Testimonial = await _context.tbl_Testimonial.ToListAsync();
         }
     }

@@ -16,6 +16,7 @@ namespace ResumeWebApp.Pages.Admin
 
         [BindProperty]
         public User user { get; set; }
+        public Profile Pro { get; set; }
         public void OnGet()
         {
         }
@@ -24,10 +25,14 @@ namespace ResumeWebApp.Pages.Admin
         {
             if (ModelState.IsValid)
             {
-                var validuser = db.tbl_User.Where(u =>u.username=="Umair Khalid" && u.email == user.email && u.password == user.password);
+                var validuser = db.tbl_User.Where(u => u.email == user.email && u.password == user.password).FirstOrDefault();
+
                 if (validuser != null)
                 {
                     HttpContext.Session.SetString("flag", "true");
+                    HttpContext.Session.SetString("username",validuser.username);
+                    Pro = db.tbl_Profile.FirstOrDefault();
+                    HttpContext.Session.SetString("userpic", Pro.Image);
                     return RedirectToPage("/Admin/Index");
                 }
                 return Page();

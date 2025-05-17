@@ -16,6 +16,11 @@ namespace ResumeWebApp.Pages.Admin
         public IList<Counter> count { get; set; }
         public void OnGet()
         {
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            if (HttpContext.Session.GetString("flag") != "true")
+            {
+                HttpContext.Response.Redirect("/Admin/LogIn");
+            }
             count = db.tbl_Counter.ToList();
         }
 

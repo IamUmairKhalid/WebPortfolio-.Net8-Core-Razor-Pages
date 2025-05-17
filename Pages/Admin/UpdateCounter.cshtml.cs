@@ -17,6 +17,11 @@ namespace ResumeWebApp.Pages.Admin
         }
         public void OnGet(int Id)
         {
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            if (HttpContext.Session.GetString("flag") != "true")
+            {
+                HttpContext.Response.Redirect("/Admin/LogIn");
+            }
             count = db.tbl_Counter.Find(Id);
         }
 

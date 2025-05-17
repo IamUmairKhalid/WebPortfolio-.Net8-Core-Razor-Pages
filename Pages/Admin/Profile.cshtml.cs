@@ -28,7 +28,6 @@ namespace ResumeWebApp.Pages.Admin
                 HttpContext.Response.Redirect("/Admin/LogIn");
             }
             Pro = db.tbl_Profile.FirstOrDefault();
-            ViewData["pic"] = Pro.Image;
         }
 
         public void OnPost()

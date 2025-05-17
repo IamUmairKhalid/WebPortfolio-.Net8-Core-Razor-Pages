@@ -16,6 +16,11 @@ namespace ResumeWebApp.Pages.Admin
         public IList<Experiance> exp { get; set; }
         public void OnGet()
         {
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            if (HttpContext.Session.GetString("flag") != "true")
+            {
+                HttpContext.Response.Redirect("/Admin/LogIn");
+            }
             exp = db.tbl_Experiance.ToList();
         }
 

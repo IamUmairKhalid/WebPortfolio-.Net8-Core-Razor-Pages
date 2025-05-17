@@ -16,6 +16,11 @@ namespace ResumeWebApp.Pages.Admin
         public IList<ContactUs> contact { get; set; }
         public void OnGet()
         {
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            if (HttpContext.Session.GetString("flag") != "true")
+            {
+                HttpContext.Response.Redirect("/Admin/LogIn");
+            }
             contact = db.tbl_ContactUs.ToList();
         }
 

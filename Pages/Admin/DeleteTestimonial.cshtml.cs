@@ -26,6 +26,11 @@ namespace ResumeWebApp.Pages.Admin
 
         public void OnGet(int id)
         {
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            if (HttpContext.Session.GetString("flag") != "true")
+            {
+                HttpContext.Response.Redirect("/Admin/LogIn");
+            }
             Testimonial = db.tbl_Testimonial.Find(id);
         }
 

@@ -10,10 +10,12 @@ namespace ResumeWebApp.Pages.Admin
         }
         public void OnGet()
         {
-            if(HttpContext.Session.GetString("flag") != "true")
+            if (HttpContext.Session.GetString("flag") != "true")
             {
                 HttpContext.Response.Redirect("/Admin/LogIn");
             }
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            ViewData["pic"] = HttpContext.Session.GetString("userpic");
         }
     }
 }

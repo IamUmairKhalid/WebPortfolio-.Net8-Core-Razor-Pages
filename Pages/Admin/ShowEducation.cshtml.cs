@@ -16,6 +16,11 @@ namespace ResumeWebApp.Pages.Admin
         public IList<Education> edu { get; set; }
         public void OnGet()
         {
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            if (HttpContext.Session.GetString("flag") != "true")
+            {
+                HttpContext.Response.Redirect("/Admin/LogIn");
+            }
             edu = db.tbl_Education.ToList();
         }
 
