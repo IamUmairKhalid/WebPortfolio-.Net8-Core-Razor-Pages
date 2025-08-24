@@ -16,16 +16,18 @@ namespace ResumeWebApp.Pages.Admin
 
         public AddSocialModel(ResumeWebApp.Data.AppDbContext context)
         {
-            ViewData["username"] = HttpContext.Session.GetString("username");
-            if (HttpContext.Session.GetString("flag") != "true")
-            {
-                HttpContext.Response.Redirect("/Admin/LogIn");
-            }
             _context = context;
         }
 
         public IActionResult OnGet()
         {
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            if (HttpContext.Session.GetString("flag") != "true")
+            {
+                HttpContext.Response.Redirect("/Admin/LogIn");
+            }
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            ViewData["pic"] = HttpContext.Session.GetString("userpic");
             return Page();
         }
 

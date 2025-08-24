@@ -30,6 +30,8 @@ namespace ResumeWebApp.Pages.Admin
             {
                 HttpContext.Response.Redirect("/Admin/LogIn");
             }
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            ViewData["pic"] = HttpContext.Session.GetString("userpic");
             if (id == null)
             {
                 return NotFound();

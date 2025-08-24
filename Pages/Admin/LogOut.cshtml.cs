@@ -10,7 +10,7 @@ namespace ResumeWebApp.Pages.Admin
         {
 
             HttpContext.Session.Clear();
-            return RedirectToPage("/Admin/LogIn");
+            return RedirectToPage("/Index");
         }
     }
 }

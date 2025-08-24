@@ -22,6 +22,8 @@ namespace ResumeWebApp.Pages.Admin
             {
                 HttpContext.Response.Redirect("/Admin/LogIn");
             }
+            ViewData["username"] = HttpContext.Session.GetString("username");
+            ViewData["pic"] = HttpContext.Session.GetString("userpic");
             edu = db.tbl_Education.Find(Id);
         }
 
