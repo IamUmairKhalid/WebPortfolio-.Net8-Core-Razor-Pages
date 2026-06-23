@@ -1,11 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using ResumeWebApp.Data;
+using ResumeWebApp.Mail;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSession();
+builder.Services.AddTransient<IEmailSender, SmtpEmailSender>();
 
 //database connection
 string conString = builder.Configuration.GetConnectionString("conString");

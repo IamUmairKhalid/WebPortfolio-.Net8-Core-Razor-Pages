@@ -20,5 +20,6 @@ namespace ResumeWebApp.Data
         public DbSet<Social> tbl_Social { get; set; }
         public DbSet<Testimonial> tbl_Testimonial { get; set; }
         public DbSet<User> tbl_User { get; set; }
+        public DbSet<EmailOtp> tbl_EmailOtp { get; set; }
     }
 }

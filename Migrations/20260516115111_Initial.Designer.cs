@@ -11,8 +11,8 @@ using ResumeWebApp.Data;
 namespace ResumeWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241113063347_third")]
-    partial class third
+    [Migration("20260516115111_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -296,6 +296,30 @@ namespace ResumeWebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_Testimonial");
+                });
+
+            modelBuilder.Entity("ResumeWebApp.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tbl_User");
                 });
 #pragma warning restore 612, 618
         }

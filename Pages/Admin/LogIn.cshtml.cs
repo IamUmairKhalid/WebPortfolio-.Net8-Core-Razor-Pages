@@ -32,9 +32,10 @@ namespace ResumeWebApp.Pages.Admin
                     HttpContext.Session.SetString("flag", "true");
                     HttpContext.Session.SetString("username",validuser.username);
                     Pro = db.tbl_Profile.FirstOrDefault();
-                    HttpContext.Session.SetString("userpic", Pro.Image);
+                    HttpContext.Session.SetString("userpic", Pro?.Image ?? "");
                     return RedirectToPage("/Admin/Index");
                 }
+                ModelState.AddModelError("", "Invalid email or password.");
                 return Page();
             }
             return Page();

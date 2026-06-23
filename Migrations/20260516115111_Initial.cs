@@ -5,7 +5,7 @@
 namespace ResumeWebApp.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -157,6 +157,21 @@ namespace ResumeWebApp.Migrations
                 {
                     table.PrimaryKey("PK_tbl_Testimonial", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_User",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_User", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
@@ -188,6 +203,9 @@ namespace ResumeWebApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "tbl_Testimonial");
+
+            migrationBuilder.DropTable(
+                name: "tbl_User");
         }
     }
 }
