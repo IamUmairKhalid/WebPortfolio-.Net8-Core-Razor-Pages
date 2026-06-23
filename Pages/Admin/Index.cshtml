@@ -1,48 +1,349 @@
-﻿@page
+@page
 @model ResumeWebApp.Pages.Admin.IndexModel
 @{
+    var chartValues = string.Join(",", Model.ContentChartData);
+    var hasChartData = Model.ContentChartData.Any(value => value > 0);
 }
 
-<div class="row justify-content-center">
+<style>
+    .dashboard-hero {
+        background: linear-gradient(135deg, #1f3a5f 0%, #4e73df 52%, #20c9a6 100%);
+        border-radius: .5rem;
+        color: #fff;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 .5rem 1rem rgba(31, 58, 95, .18);
+    }
 
-    <h2>Welcome To Admin Panel</h2>
+    .dashboard-hero h1 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: .25rem;
+    }
 
-    <div class="col-md-10 justify-content-center">
+    .dashboard-hero p {
+        color: rgba(255, 255, 255, .82);
+        margin-bottom: 0;
+    }
 
-        <h4 class="mt-3">
-            Messages
-        </h4>
-        <div class="card">
-        <table class="table table-hover">
-            <thead class="text-white" style="background-color: royalblue;">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Message</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.contact)
-                {
-                    <tr style="cursor:pointer;" onclick="window.location.href='@Url.Page("ShowContactUs", new { id = item.Id })'">
-                        <td>@item.Name</td>
-                        <td>
-                            <span class="short-text">
-                                @(item.Email.Length > 20 ? item.Email.Substring(0, 20) + "..." : item.Email)
-                            </span>
-                        </td>
-                        <td>@item.Subject</td>
-                        <td>
-                            <span class="short-text">
-                                @(item.Message.Length > 30 ? item.Message.Substring(0, 30) + "..." : item.Message)
-                            </span>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+    .dashboard-kpi {
+        border-left-width: .35rem !important;
+        min-height: 116px;
+    }
+
+    .dashboard-action {
+        transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .dashboard-action:hover {
+        box-shadow: 0 .5rem 1rem rgba(58, 59, 69, .12) !important;
+        text-decoration: none;
+        transform: translateY(-2px);
+    }
+
+    .health-ring {
+        align-items: center;
+        border: 10px solid #e8eefb;
+        border-top-color: #1cc88a;
+        border-right-color: #36b9cc;
+        border-radius: 50%;
+        display: flex;
+        height: 148px;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        width: 148px;
+    }
+
+    .health-ring strong {
+        color: #2e4057;
+        font-size: 2rem;
+        line-height: 1;
+    }
+
+    .message-row {
+        cursor: pointer;
+    }
+
+    .message-preview {
+        max-width: 330px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .skill-meter {
+        height: .65rem;
+    }
+</style>
+
+<div class="dashboard-hero d-sm-flex align-items-center justify-content-between">
+    <div>
+        <h1>@Model.PrimaryProfileName Dashboard</h1>
+        <p>Portfolio health, visitor messages, and the next best edits in one place.</p>
+    </div>
+    <a class="btn btn-light btn-sm mt-3 mt-sm-0 shadow-sm" asp-page="/Index" target="_blank">
+        <i class="fas fa-external-link-alt fa-sm text-primary mr-1"></i>
+        View Site
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card dashboard-kpi border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Portfolio Health</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.PortfolioHealth%</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-chart-line fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card dashboard-kpi border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Inbox</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.MessageCount messages</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-inbox fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card dashboard-kpi border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Skill Power</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AverageSkillPower%</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-bolt fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card dashboard-kpi border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Counter Impact</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalCounterNumber</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-award fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="row">
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Admin Shortcuts</h6>
+                <span class="badge badge-light">@Model.LeadSender: @Model.LeadSubject</span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    @foreach (var action in Model.QuickActions)
+                    {
+                        <div class="col-md-6 mb-3">
+                            <a class="card dashboard-action border-0 shadow-sm h-100" asp-page="@action.PageName">
+                                <div class="card-body d-flex">
+                                    <div class="mr-3">
+                                        <span class="btn btn-circle btn-primary">
+                                            <i class="fas @action.Icon"></i>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <h6 class="font-weight-bold text-gray-900 mb-0 mr-2">@action.Title</h6>
+                                            <span class="badge badge-info">@action.Badge</span>
+                                        </div>
+                                        <p class="small text-gray-600 mb-0">@action.Description</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Recent Visitor Messages</h6>
+                <a class="btn btn-sm btn-outline-primary" asp-page="ShowContactUs">Open Inbox</a>
+            </div>
+            <div class="card-body p-0">
+                @if (Model.contact.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                    <th class="text-right">Open</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.contact)
+                                {
+                                    <tr class="message-row" onclick="window.location.href='@Url.Page("ContactUsDetails", new { id = item.Id })'">
+                                        <td>
+                                            <div class="font-weight-bold text-gray-900">@item.Name</div>
+                                            <div class="small text-muted">@item.Email</div>
+                                        </td>
+                                        <td>@item.Subject</td>
+                                        <td class="message-preview">@item.Message</td>
+                                        <td class="text-right">
+                                            <i class="fas fa-chevron-right text-gray-400"></i>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="p-4 text-center text-gray-600">No visitor messages yet.</div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Portfolio Health Score</h6>
+            </div>
+            <div class="card-body text-center">
+                <div class="health-ring">
+                    <strong>@Model.PortfolioHealth%</strong>
+                </div>
+                <p class="text-gray-600 mb-0">Calculated from profile, education, experience, services, skills, counters, testimonials, and social links.</p>
+            </div>
+        </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Content Mix</h6>
+            </div>
+            <div class="card-body">
+                @if (hasChartData)
+                {
+                    <canvas id="contentMixChart" height="220"></canvas>
+                }
+                else
+                {
+                    <div class="text-center text-gray-600 py-4">
+                        <i class="fas fa-chart-pie fa-2x text-gray-300 mb-3"></i>
+                        <p class="mb-0">Add portfolio content to unlock the mix chart.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Strongest Skills</h6>
+            </div>
+            <div class="card-body">
+                @if (Model.TopSkills.Any())
+                {
+                    @foreach (var skill in Model.TopSkills)
+                    {
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="font-weight-bold text-gray-800">@skill.Name</span>
+                                <span class="small text-gray-600">@skill.Number%</span>
+                            </div>
+                            <div class="progress skill-meter">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: @skill.Number%" aria-valuenow="@skill.Number" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-gray-600 mb-0">No skills have been added yet.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Next Best Edits</h6>
+            </div>
+            <div class="card-body">
+                @foreach (var gap in Model.ContentGaps)
+                {
+                    <div class="d-flex align-items-start mb-3">
+                        <div class="mr-3">
+                            <i class="fas fa-check-circle text-success"></i>
+                        </div>
+                        <p class="mb-0 text-gray-700">@gap</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Admin/vendor/chart.js/Chart.min.js"></script>
+<script>
+    (function () {
+        var hasChartData = @hasChartData.ToString().ToLowerInvariant();
+        var chartElement = document.getElementById('contentMixChart');
+
+        if (!hasChartData || !chartElement || typeof Chart === 'undefined') {
+            return;
+        }
+
+        new Chart(chartElement, {
+            type: 'doughnut',
+            data: {
+                labels: ['Education', 'Experience', 'Services', 'Skills', 'Testimonials', 'Social'],
+                datasets: [{
+                    data: [@chartValues],
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796'],
+                    hoverBackgroundColor: ['#365ac7', '#17a673', '#2c9faf', '#dda20a', '#be2617', '#6c757d'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                cutoutPercentage: 68,
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        });
+    })();
+</script>
