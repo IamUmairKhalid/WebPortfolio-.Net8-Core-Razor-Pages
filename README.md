@@ -79,12 +79,6 @@ dotnet run
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License**.
-
----
-
 ## 👨‍💻 Author
 
 **Umair Khalid**
